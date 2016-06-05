@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html ng-app="APP">
+<html>
 <head>
+  <intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
   <meta charset="utf-8">
   <title></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
@@ -13,16 +14,11 @@
      -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body ng-controller="CTRLS">
+<body ng-app="WriteTimeApp">
 
-  <div>
-    <h1></h1>
-    <p>Angular, what's 1 + 1? {{1 + 1}}</p>
-
-    <p> Are you in? {{in}} </p>
+  <div class="container">
+    <div ui-view></div>
   </div>
-
-
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-rc1/jquery.js"></script>
   <script src="./js/script.js"></script>
