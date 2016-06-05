@@ -1,1 +1,1 @@
-angular.module('WriteServices', []);
+angular.module('WriteServices', ['ngResource']);

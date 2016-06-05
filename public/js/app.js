@@ -12,7 +12,15 @@ app.config(['$stateProvider',
     url: '/',
     templateUrl: 'views/home.html',
     controller: 'HomeCtrl'
+  })
+  .state('signup', {
+    url: '/signup',
+    templateUrl: 'views/signup.html',
+  })
+  .state('login', {
+    url: '/login',
+    templateUrl: 'views/login.html',
   });
 
-  //$locationProvider.html5Mode(false).hashPrefix('!');
+  $locationProvider.html5Mode(true);
 }]);
