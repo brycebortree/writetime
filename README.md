@@ -11,3 +11,6 @@ NodeJS
 also starring: 
 bcrypt
 ui.router
+
+working on auth:
+currently can't use models to find all users on /api/users

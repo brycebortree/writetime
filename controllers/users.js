@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    User.findOne(function(err, users) {
+    User.findAll(function(err, users) {
       if (err) return res.status(500).send(err);
       res.send(users);
     });
