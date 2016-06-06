@@ -6,7 +6,6 @@ var jwt = require('jsonwebtoken');
 var app = express();
 
 var db = require('./models');
-var models = require('./models');
 
 var secret = "behindtheuniverse";
 
@@ -28,26 +27,26 @@ app.use('/api/posts', require('./controllers/posts'));
 app.use('/api/users', require('./controllers/users'));
 
 app.post('/api/auth', function(req, res) {
-  console.log("api is happening");
-  console.log(req.body);
-
   // example query: models.post.find({where: {id: req.params.id}}).then(function(err, post) {
 
 
-  models.user.findAll({where: {email: req.body.email}}).then(function(err, user) {
+  db.user.find({where: {email: req.body.email}}).then(function(user, err) {
     if (err || !user) return res.status(401).send({message: 'User not found'});
-    user.authenticated(req.body.password, function(err, result) {
+    db.user.authenticate(req.body.email, req.body.password, function(err, result) {
       if (err || !result) return res.status(401).send({message: 'User not authenticated'});
-
+      user = {
+        id: user.id,
+        email: user.email,
+        password: user.password
+      }
       var token = jwt.sign(user, secret);
-      console.log({user: user, token: token});
       res.send({user: user, token: token});
     });
   });
 });
 
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/home.html'));
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 app.listen(3000);

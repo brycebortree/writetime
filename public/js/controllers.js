@@ -77,8 +77,6 @@ angular.module('WriteCtrls', ['WriteServices'])
     password: ''
   };
   $scope.userLogin = function() {
-    console.log('login');
-    console.log($scope.user);
     $http.post('/api/auth', $scope.user).then(function success(res) {
       Auth.saveToken(res.data.token);
       console.log('Token:', res.data.token);

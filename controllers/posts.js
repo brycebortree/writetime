@@ -4,14 +4,14 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    models.post.findOne().then(function(err, posts) {
+    models.post.findOne().then(function(posts, err) {
       if (err) return res.status(500).send(err);
       res.send(posts);
     });
   })
   .post(function(req, res) {
     // removed before function: req.body, 
-    models.post.create().then(function(err, post) {
+    models.post.create().then(function(post, err) {
       if (err) return res.status(500).send(err);
       res.send(post);
     });
@@ -20,7 +20,7 @@ router.route('/')
 router.route('/:id')
   .get(function(req, res) {
     console.log(req.params.id);
-    models.post.find({where: {id: req.params.id}}).then(function(err, post) {
+    models.post.find({where: {id: req.params.id}}).then(function(post, err) {
       if (err) return res.status(500).send(err);
       res.send(post);
     });
