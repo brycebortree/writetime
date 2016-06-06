@@ -1,21 +1,21 @@
 angular.module('WriteCtrls', ['WriteServices'])
 .controller('HomeCtrl', ['$scope', 'Post', 'Auth', function($scope, Post, Auth) {
-  $scope.posts = [];
-  $scope.Auth = Auth;
+  // $scope.posts = [];
+  // $scope.Auth = Auth;
 
-  Post.query(function success(data) {
-    $scope.posts = data;
-  }, function error(data) {
-    console.log(data);
-  });
+  // Post.query(function success(data) {
+  //   $scope.posts = data;
+  // }, function error(data) {
+  //   console.log(data);
+  // });
 
-  $scope.deletePost = function(id, postsIdx) {
-    Post.delete({id: id}, function success(data) {
-      $scope.posts.splice(postsIdx, 1);
-    }, function error(data) {
-      console.log(data);
-    });
-  }
+  // $scope.deletePost = function(id, postsIdx) {
+  //   Post.delete({id: id}, function success(data) {
+  //     $scope.posts.splice(postsIdx, 1);
+  //   }, function error(data) {
+  //     console.log(data);
+  //   });
+  // }
 }])
 .controller('ShowCtrl', ['$scope', '$stateParams', 'Post', function($scope, $stateParams, Post) {
   $scope.post = {};
@@ -59,12 +59,15 @@ angular.module('WriteCtrls', ['WriteServices'])
     password: ''
   };
   $scope.userSignup = function() {
-    console.log('signup clicked');
-    console.log(user);
+      $scope.user = {
+        name: $scope.user.name,
+        email: $scope.user.email,
+        password: $scope.user.password
+      };
     $http.post('/api/users', $scope.user).then(function success(res) {
-      $location.path('/');
+      // $location.path('/');
     }, function error(res) {
-      console.log(data);
+      console.log(res.data);
     });
   }
 }])
@@ -74,10 +77,11 @@ angular.module('WriteCtrls', ['WriteServices'])
     password: ''
   };
   $scope.userLogin = function() {
-    console.log('signup clicked');
+    console.log('login');
+    console.log($scope.user);
     $http.post('/api/auth', $scope.user).then(function success(res) {
       Auth.saveToken(res.data.token);
-      console.log('Token:', res.data.token)
+      console.log('Token:', res.data.token);
       $location.path('/');
     }, function error(res) {
       console.log(res);

@@ -16,10 +16,12 @@ app.config(['$stateProvider',
   .state('signup', {
     url: '/signup',
     templateUrl: 'views/signup.html',
+    controller: 'SignupCtrl'
   })
   .state('login', {
     url: '/login',
     templateUrl: 'views/login.html',
+    controller: 'LoginCtrl'
   })
   .state('about', {
     url: '/about',

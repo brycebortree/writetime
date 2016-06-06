@@ -1,16 +1,17 @@
 var express = require('express');
-var Recipe = require('../models/post');
+var models = require('../models');
 var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    Post.find(function(err, posts) {
+    models.post.findOne().then(function(err, posts) {
       if (err) return res.status(500).send(err);
       res.send(posts);
     });
   })
   .post(function(req, res) {
-    Post.create(req.body, function(err, post) {
+    // removed before function: req.body, 
+    models.post.create().then(function(err, post) {
       if (err) return res.status(500).send(err);
       res.send(post);
     });
@@ -18,19 +19,21 @@ router.route('/')
 
 router.route('/:id')
   .get(function(req, res) {
-    Post.findById(req.params.id, function(err, post) {
+    console.log(req.params.id);
+    models.post.find({where: {id: req.params.id}}).then(function(err, post) {
       if (err) return res.status(500).send(err);
       res.send(post);
     });
   })
   .put(function(req, res) {
-    Post.findByIdAndUpdate(req.params.id, req.body, function(err) {
+    // removed before function: req.body, 
+    models.post.find({where: {id: req.params.id}}).then(function(err) {
       if (err) return res.status(500).send(err);
       res.send({'message': 'success'});
     });
   })
   .delete(function(req, res) {
-    Post.findByIdAndRemove(req.params.id, function(err) {
+    models.post.find({where: {id: req.params.id}}).then(function(err) {
       if (err) return res.status(500).send(err);
       res.send({'message': 'success'});
     });

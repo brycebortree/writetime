@@ -1,13 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var session = require('express-session');
 var path = require('path');
 var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 var app = express();
 
 var db = require('./models');
-var User = require('./models/user');
+var models = require('./models');
 
 var secret = "behindtheuniverse";
 
@@ -29,12 +28,19 @@ app.use('/api/posts', require('./controllers/posts'));
 app.use('/api/users', require('./controllers/users'));
 
 app.post('/api/auth', function(req, res) {
-  User.findOne({email: req.body.email}, function(err, user) {
+  console.log("api is happening");
+  console.log(req.body);
+
+  // example query: models.post.find({where: {id: req.params.id}}).then(function(err, post) {
+
+
+  models.user.findAll({where: {email: req.body.email}}).then(function(err, user) {
     if (err || !user) return res.status(401).send({message: 'User not found'});
     user.authenticated(req.body.password, function(err, result) {
       if (err || !result) return res.status(401).send({message: 'User not authenticated'});
 
       var token = jwt.sign(user, secret);
+      console.log({user: user, token: token});
       res.send({user: user, token: token});
     });
   });
