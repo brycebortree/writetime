@@ -42,8 +42,11 @@ router.route('/:id')
     });
   })
   .delete(function(req, res) {
-    models.post.find({where: {id: req.params.id}}).then(function(err) {
-      if (err) return res.status(500).send(err);
+    models.post.find({where: {id: req.params.id}}).then(function(post, err) {
+      if (err) {
+        return res.status(500).send(err);
+      } else
+      return post.destroy();
       res.send({'message': 'success'});
     });
   });

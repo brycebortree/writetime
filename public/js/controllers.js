@@ -14,7 +14,7 @@ angular.module('WriteCtrls', ['WriteServices'])
   })
 
   $scope.deletePost = function(id, postsIdx) {
-    Post.delete({id: id}, function success(data) {
+    Post.delete({id: $stateParams.id}, function success(data) {
       $scope.posts.splice(postsIdx, 1);
     }, function error(data) {
       console.log(data);
@@ -30,7 +30,7 @@ angular.module('WriteCtrls', ['WriteServices'])
 
   $scope.createPost = function() {
     Post.save($scope.post, function success(data) {
-      $location.path('/');
+      $location.path('/allposts');
     }, function error(data) {
       console.log(data);
     });
