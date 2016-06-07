@@ -36,7 +36,6 @@ router.route('/:id')
     });
   })
   .put(function(req, res) {
-    // removed before function: req.body, 
     models.post.find({where: {id: req.params.id}}).then(function(err) {
       if (err) return res.status(500).send(err);
       res.send({'message': 'success'});

@@ -11,7 +11,15 @@ angular.module('WriteCtrls', ['WriteServices'])
     $scope.post = data;
   }, function error(data) {
     console.log(data);
-  });
+  })
+
+  $scope.deletePost = function(id, postsIdx) {
+    Post.delete({id: id}, function success(data) {
+      $scope.posts.splice(postsIdx, 1);
+    }, function error(data) {
+      console.log(data);
+    });
+  }
 }])
 .controller('NewCtrl', ['$scope', '$location', 'Post', 'Auth', 
   function($scope, $location, Post, Auth) {

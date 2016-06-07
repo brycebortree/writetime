@@ -1,5 +1,6 @@
 <h1>All Posts</h1>
-<div ng-show="Auth.isLoggedIn()"  ng-repeat="post in posts track by $index">
-  <a ng-href="/posts/{{post._id}}"><h2>{{post.title}}</h2></a>
-  <a ng-click="deleteRecipe(post._id, $index)" class="btn btn-danger glyphicon glyphicon-trash pull-right"></a>
+<div class="well" ng-show="Auth.isLoggedIn()"  ng-repeat="post in posts track by $index">
+  <a ng-href="/posts/{{post.id}}"><h2>{{post.title}}</h2></a>
 </div>
+
+  
