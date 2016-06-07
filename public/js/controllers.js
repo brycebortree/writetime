@@ -2,8 +2,8 @@ angular.module('WriteCtrls', ['WriteServices'])
 .controller('HomeCtrl', ['$scope', 'Post', 'Auth', 
   function($scope, Post, Auth) {
 }])
-.controller('ShowCtrl', ['$scope', '$stateParams', 'Post', 'Auth',
-  function($scope, $stateParams, Post, Auth) {
+.controller('ShowCtrl', ['$scope', '$location', '$stateParams', 'Post', 'Auth',
+  function($scope, $location, $stateParams, Post, Auth) {
   $scope.post = {};
   $scope.Auth = Auth;
 
@@ -15,11 +15,25 @@ angular.module('WriteCtrls', ['WriteServices'])
 
   $scope.deletePost = function(id, postsIdx) {
     Post.delete({id: $stateParams.id}, function success(data) {
+      $location.path('/allposts');
       $scope.posts.splice(postsIdx, 1);
+      $location.path('/allposts');
     }, function error(data) {
       console.log(data);
     });
   }
+
+  $scope.editPost = function(id, postsIdx) {
+    Post.delete({id: $stateParams.id}, function success(data) {
+      $location.path('/allposts');
+      $scope.posts.splice(postsIdx, 1);
+      $location.path('/allposts');
+    }, function error(data) {
+      console.log(data);
+    });
+  }
+
+
 }])
 .controller('NewCtrl', ['$scope', '$location', 'Post', 'Auth', 
   function($scope, $location, Post, Auth) {
