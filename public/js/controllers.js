@@ -1,5 +1,6 @@
 angular.module('WriteCtrls', ['WriteServices'])
-.controller('HomeCtrl', ['$scope', 'Post', 'Auth', function($scope, Post, Auth) {
+.controller('HomeCtrl', ['$scope', 'Post', 'Auth', 
+  function($scope, Post, Auth) {
   // $scope.posts = [];
   // $scope.Auth = Auth;
 
@@ -17,7 +18,8 @@ angular.module('WriteCtrls', ['WriteServices'])
   //   });
   // }
 }])
-.controller('ShowCtrl', ['$scope', '$stateParams', 'Post', function($scope, $stateParams, Post) {
+.controller('ShowCtrl', ['$scope', '$stateParams', 'Post', 
+  function($scope, $stateParams, Post) {
   $scope.post = {};
 
   Post.get({id: $stateParams.id}, function success(data) {
@@ -41,7 +43,8 @@ angular.module('WriteCtrls', ['WriteServices'])
     });
   }
 }])
-.controller('AllCtrl', ['$scope', '$location', 'Post', function($scope, $location, Post) {
+.controller('AllCtrl', ['$scope', '$location', 'Post', 
+  function($scope, $location, Post) {
   $scope.posts = {};
 
   Post.query(function success(data) {
@@ -51,7 +54,8 @@ angular.module('WriteCtrls', ['WriteServices'])
     console.log(data);
   });
 }])
-.controller('NavCtrl', ['$scope', '$location', 'Auth', function($scope, $location, Auth) {
+.controller('NavCtrl', ['$scope', '$location', 'Auth', 
+  function($scope, $location, Auth) {
   $scope.Auth = Auth;
   $scope.logout = function() {
     Auth.removeToken();
@@ -59,10 +63,12 @@ angular.module('WriteCtrls', ['WriteServices'])
     $location.path('/');
   }
 }])
-.controller('AlertsCtrl', ['$scope', 'Alerts', function($scope, Alerts) {
+.controller('AlertsCtrl', ['$scope', 'Alerts', 
+  function($scope, Alerts) {
   $scope.Alerts = Alerts;
 }])
-.controller('SignupCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+.controller('SignupCtrl', ['$scope', '$http', '$location', 
+  function($scope, $http, $location) {
   $scope.user = {
     name: '',
     email: '',
@@ -81,7 +87,8 @@ angular.module('WriteCtrls', ['WriteServices'])
     });
   }
 }])
-.controller('LoginCtrl', ['$scope', '$http', '$location', 'Auth', 'Alerts', function($scope, $http, $location, Auth, Alerts) {
+.controller('LoginCtrl', ['$scope', '$http', '$location', 'Auth', 'Alerts', 
+  function($scope, $http, $location, Auth, Alerts) {
   $scope.user = {
     email: '',
     password: ''
