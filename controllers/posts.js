@@ -19,6 +19,14 @@ router.route('/')
     })
   });
 
+router.route('/all')
+  .get(function(req, res){
+    models.post.findAll().then(function(posts, err){
+      if (err) return res.status(500).send(err);
+      res.send(posts);
+    });
+  })
+
 router.route('/:id')
   .get(function(req, res) {
     console.log(req.params.id);

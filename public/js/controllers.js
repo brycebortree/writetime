@@ -1,22 +1,6 @@
 angular.module('WriteCtrls', ['WriteServices'])
 .controller('HomeCtrl', ['$scope', 'Post', 'Auth', 
   function($scope, Post, Auth) {
-  // $scope.posts = [];
-  // $scope.Auth = Auth;
-
-  // Post.query(function success(data) {
-  //   $scope.posts = data;
-  // }, function error(data) {
-  //   console.log(data);
-  // });
-
-  // $scope.deletePost = function(id, postsIdx) {
-  //   Post.delete({id: id}, function success(data) {
-  //     $scope.posts.splice(postsIdx, 1);
-  //   }, function error(data) {
-  //     console.log(data);
-  //   });
-  // }
 }])
 .controller('ShowCtrl', ['$scope', '$stateParams', 'Post', 
   function($scope, $stateParams, Post) {
@@ -43,11 +27,11 @@ angular.module('WriteCtrls', ['WriteServices'])
     });
   }
 }])
-.controller('AllCtrl', ['$scope', '$location', 'Post', 
-  function($scope, $location, Post) {
+.controller('AllCtrl', ['$scope', '$location', 'Posts', 
+  function($scope, $location, Posts) {
   $scope.posts = {};
 
-  Post.query(function success(data) {
+  Posts.query(function success(data) {
     console.log(data);
     $scope.posts = data;
   }, function error(data) {
