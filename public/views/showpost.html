@@ -8,5 +8,5 @@
 </div>
 
 <a href="/#/allposts" ng-click="deletePost(post._id, $index)" class="btn btn-danger glyphicon glyphicon-trash pull-right"></a>
-<a ng-click="deletePost(post._id, $index)" class="btn btn-warning glyphicon  glyphicon-pencil pull-right"></a>
+<a ng-href="/posts/edit/{{post.id}}" class="btn btn-warning glyphicon glyphicon-pencil pull-right"></a>
 <a href="/allposts" class="btn btn-primary">&larr; Back</a>

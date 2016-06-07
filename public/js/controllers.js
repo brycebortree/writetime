@@ -15,15 +15,14 @@ angular.module('WriteCtrls', ['WriteServices'])
 
   $scope.deletePost = function(id, postsIdx) {
     Post.delete({id: $stateParams.id}, function success(data) {
-      $location.path('/allposts');
       $scope.posts.splice(postsIdx, 1);
-      $location.path('/allposts');
     }, function error(data) {
       console.log(data);
     });
   }
 
   $scope.editPost = function(id, postsIdx) {
+    // C H A N G E OR D E L E T E 
     Post.delete({id: $stateParams.id}, function success(data) {
       $location.path('/allposts');
       $scope.posts.splice(postsIdx, 1);
@@ -32,8 +31,6 @@ angular.module('WriteCtrls', ['WriteServices'])
       console.log(data);
     });
   }
-
-
 }])
 .controller('NewCtrl', ['$scope', '$location', 'Post', 'Auth', 
   function($scope, $location, Post, Auth) {
@@ -62,6 +59,37 @@ angular.module('WriteCtrls', ['WriteServices'])
     console.log(data);
   });
 }])
+.controller('EditCtrl', ['$scope', '$stateParams', '$location', 'Post', 'Auth',
+  function($scope, $stateParams, $location, Post, Auth) {
+  $scope.posts = [];
+  $scope.Auth = Auth;
+
+  Post.get({id: $stateParams.id}, function success(data) {
+    $scope.post = data;
+  }, function error(data) {
+    console.log(data);
+  })
+
+  $scope.updatePost = function(id) {
+    console.log('updating');
+    Post.put({id: $stateParams.id}, function success(data) {
+      $scope.post.update();
+    }, function error(data) {
+      console.log(data);
+    })
+  }
+
+  $scope.deletePost = function(id, postsIdx) {
+    Post.delete({id: $stateParams.id}, function success(data) {
+      $scope.posts.splice(postsIdx, 1);
+    }, function error(data) {
+      console.log(data);
+    });
+  }
+
+
+}])
+
 .controller('NavCtrl', ['$scope', '$location', 'Auth', 
   function($scope, $location, Auth) {
   $scope.Auth = Auth;

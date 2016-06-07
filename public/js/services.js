@@ -5,6 +5,9 @@ angular.module('WriteServices', ['ngResource'])
 .factory('Posts', ['$resource',function($resource) {
   return $resource('/api/posts/all');
 }])
+// .factory('EditPost', ['$resource', function($resource){
+//   return $resource('api/posts/put');
+// }])
 .factory('Auth', ['$window', function($window) {
   return {
     saveToken: function(token) {
