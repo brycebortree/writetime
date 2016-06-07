@@ -27,18 +27,21 @@ router.route('/all')
     });
   })
 
-router.route('/put')
-  .put(function(req, res) {
-    models.post.find({where: {id: req.params.id}}).then(function(err) {
-      if (err) return res.status(500).send(err);
-      res.send({'message': 'success'});
-    });
-  })
 
 router.route('/:id')
   .get(function(req, res) {
     console.log(req.params.id);
     models.post.find({where: {id: req.params.id}}).then(function(post, err) {
+      if (err) return res.status(500).send(err);
+      res.send(post);
+    });
+  })
+  .post(function(req, res) {
+    models.post.find({where: {id: req.params.id}}).then(function(post, err) {
+      post.update({
+        title: req.body.title,
+        content: req.body.content
+      })
       if (err) return res.status(500).send(err);
       res.send(post);
     });

@@ -7,8 +7,10 @@ angular.module('WriteCtrls', ['WriteServices'])
   $scope.post = {};
   $scope.Auth = Auth;
 
+
   Post.get({id: $stateParams.id}, function success(data) {
     $scope.post = data;
+    console.log(data);
   }, function error(data) {
     console.log(data);
   })
@@ -47,6 +49,7 @@ angular.module('WriteCtrls', ['WriteServices'])
     });
   }
 }])
+// Note that all is POSTS PLURAL
 .controller('AllCtrl', ['$scope', '$location', 'Posts', 'Auth', 
   function($scope, $location, Posts, Auth) {
   $scope.posts = [];
@@ -59,8 +62,8 @@ angular.module('WriteCtrls', ['WriteServices'])
     console.log(data);
   });
 }])
-.controller('EditCtrl', ['$scope', '$stateParams', '$location', 'Post', 'Auth',
-  function($scope, $stateParams, $location, Post, Auth) {
+.controller('EditCtrl', ['$scope', '$stateParams', '$location', 'Post', 'Auth', '$http',
+  function($scope, $stateParams, $location, Post, Auth, $http) {
   $scope.posts = [];
   $scope.Auth = Auth;
 
@@ -71,13 +74,29 @@ angular.module('WriteCtrls', ['WriteServices'])
   })
 
   $scope.updatePost = function(id) {
-    console.log('updating');
-    Post.put({id: $stateParams.id}, function success(data) {
-      $scope.post.update();
-    }, function error(data) {
-      console.log(data);
+    $scope.post = {
+      title: $scope.post.title,
+      content: $scope.post.content
+    };
+    console.log("post:", $scope.post);
+    $http.post('api/posts/' + id, $scope.post).then(function success(res) {
+      $location.path('/posts/' + id);
+    }, function error(res) {
+      console.log(res.data);
     })
   }
+ // $scope.userSignup = function() {
+ //      $scope.user = {
+ //        name: $scope.user.name,
+ //        email: $scope.user.email,
+ //        password: $scope.user.password
+ //      };
+ //    $http.post('/api/users', $scope.user).then(function success(res) {
+ //      $location.path('/login');
+ //    }, function error(res) {
+ //      console.log(res.data);
+ //    });
+ //  }
 
   $scope.deletePost = function(id, postsIdx) {
     Post.delete({id: $stateParams.id}, function success(data) {

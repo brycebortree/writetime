@@ -1,13 +1,14 @@
 angular.module('WriteServices', ['ngResource'])
 .factory('Post', ['$resource',function($resource) {
-  return $resource('/api/posts/:id', {}, {'query': {isArray:false}});
+  return $resource('/api/posts/:id', {id: '@id'}, 
+    {
+      'query': {isArray:false}, 
+      update: {method: 'PUT'}
+    });
 }])
 .factory('Posts', ['$resource',function($resource) {
   return $resource('/api/posts/all');
 }])
-// .factory('EditPost', ['$resource', function($resource){
-//   return $resource('api/posts/put');
-// }])
 .factory('Auth', ['$window', function($window) {
   return {
     saveToken: function(token) {
