@@ -29,8 +29,7 @@ angular.module('WriteCtrls', ['WriteServices'])
 .controller('NewCtrl', ['$scope', '$location', 'Post', function($scope, $location, Post) {
   $scope.post = {
     title: '',
-    description: '',
-    image: ''
+    description: ''
   };
 
   $scope.createPost = function() {
@@ -40,6 +39,15 @@ angular.module('WriteCtrls', ['WriteServices'])
       console.log(data);
     });
   }
+}])
+.controller('AllCtrl', ['$scope', '$location', 'Post', function($scope, $location, Post) {
+  $scope.posts = {};
+
+  Post.query(function success(data) {
+    $scope.posts = data;
+  }, function error(data) {
+    console.log(data);
+  });
 }])
 .controller('NavCtrl', ['$scope', '$location', 'Auth', function($scope, $location, Auth) {
   $scope.Auth = Auth;
@@ -65,7 +73,7 @@ angular.module('WriteCtrls', ['WriteServices'])
         password: $scope.user.password
       };
     $http.post('/api/users', $scope.user).then(function success(res) {
-      // $location.path('/');
+      $location.path('/login');
     }, function error(res) {
       console.log(res.data);
     });
@@ -80,7 +88,7 @@ angular.module('WriteCtrls', ['WriteServices'])
     $http.post('/api/auth', $scope.user).then(function success(res) {
       Auth.saveToken(res.data.token);
       console.log('Token:', res.data.token);
-      $location.path('/');
+      $location.path('/newPost');
     }, function error(res) {
       console.log(res);
       Alerts.add('warning', 'Login failure: ' + res.statusText);

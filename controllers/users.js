@@ -10,7 +10,6 @@ router.route('/')
     });
   })
   .post(function(req, res) {
-    console.log(req.body);
     models.user.create(req.body)
     .then(function(user, err) {
       console.log(err);

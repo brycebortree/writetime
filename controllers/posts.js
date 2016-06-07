@@ -11,7 +11,7 @@ router.route('/')
   })
   .post(function(req, res) {
     // removed before function: req.body, 
-    models.post.create().then(function(post, err) {
+    models.post.create(req.body).then(function(post, err) {
       if (err) return res.status(500).send(err);
       res.send(post);
     });

@@ -26,6 +26,16 @@ app.config(['$stateProvider',
   .state('about', {
     url: '/about',
     templateUrl: 'views/about.html',
+  })  
+  .state('newpost', {
+    url: '/newpost',
+    templateUrl: 'views/newpost.html',
+    controller: 'NewCtrl'
+  })
+  .state('allposts', {
+    url: '/allposts',
+    templateUrl: 'views/allposts.html',
+    controller: 'AllCtrl'
   });
 
   $locationProvider.html5Mode(true);
