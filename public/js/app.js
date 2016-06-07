@@ -3,7 +3,8 @@ var app = angular.module('WriteTimeApp', ['WriteCtrls', 'ui.router']);
 app.config(['$stateProvider', 
   '$urlRouterProvider', 
   '$locationProvider',
- function($stateProvider, $urlRouterProvider, $locationProvider) {
+  '$httpProvider',
+ function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
   $urlRouterProvider.otherwise('/');
 
   //define routes
@@ -38,5 +39,6 @@ app.config(['$stateProvider',
     controller: 'AllCtrl'
   });
 
+  $httpProvider.interceptors.push('AuthInterceptor')
   $locationProvider.html5Mode(true);
 }]);

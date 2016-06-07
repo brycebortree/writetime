@@ -1,5 +1,6 @@
 var express = require('express');
 var models = require('../models');
+var jwt = require('express-jwt');
 var router = express.Router();
 
 router.route('/')
@@ -9,12 +10,13 @@ router.route('/')
       res.send(posts);
     });
   })
-  .post(function(req, res) {
-    // removed before function: req.body, 
-    models.post.create(req.body).then(function(post, err) {
+  .post(jwt({secret: "behindtheuniverse"}), function(req, res) {
+    models.user.findById(req.user.id).then(function(user, err) {
+      user.createPost(req.body).then(function(post, err) {
       if (err) return res.status(500).send(err);
       res.send(post);
-    });
+      });
+    })
   });
 
 router.route('/:id')

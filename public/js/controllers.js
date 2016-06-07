@@ -26,7 +26,8 @@ angular.module('WriteCtrls', ['WriteServices'])
     console.log(data);
   });
 }])
-.controller('NewCtrl', ['$scope', '$location', 'Post', function($scope, $location, Post) {
+.controller('NewCtrl', ['$scope', '$location', 'Post', 'Auth', 
+  function($scope, $location, Post, Auth) {
   $scope.post = {
     title: '',
     description: ''
@@ -44,6 +45,7 @@ angular.module('WriteCtrls', ['WriteServices'])
   $scope.posts = {};
 
   Post.query(function success(data) {
+    console.log(data);
     $scope.posts = data;
   }, function error(data) {
     console.log(data);

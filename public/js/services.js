@@ -1,6 +1,6 @@
 angular.module('WriteServices', ['ngResource'])
-.factory('Post', ['$resource', function($resource) {
-  return $resource('/api/posts/:id');
+.factory('Post', ['$resource', 'Auth',function($resource, Auth) {
+  return $resource('/api/posts/:id', {interceptor:Auth});
 }])
 .factory('Auth', ['$window', function($window) {
   return {
