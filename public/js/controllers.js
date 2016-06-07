@@ -2,9 +2,10 @@ angular.module('WriteCtrls', ['WriteServices'])
 .controller('HomeCtrl', ['$scope', 'Post', 'Auth', 
   function($scope, Post, Auth) {
 }])
-.controller('ShowCtrl', ['$scope', '$stateParams', 'Post', 
-  function($scope, $stateParams, Post) {
+.controller('ShowCtrl', ['$scope', '$stateParams', 'Post', 'Auth',
+  function($scope, $stateParams, Post, Auth) {
   $scope.post = {};
+  $scope.Auth = Auth;
 
   Post.get({id: $stateParams.id}, function success(data) {
     $scope.post = data;
@@ -27,9 +28,10 @@ angular.module('WriteCtrls', ['WriteServices'])
     });
   }
 }])
-.controller('AllCtrl', ['$scope', '$location', 'Posts', 
-  function($scope, $location, Posts) {
-  $scope.posts = {};
+.controller('AllCtrl', ['$scope', '$location', 'Posts', 'Auth', 
+  function($scope, $location, Posts, Auth) {
+  $scope.posts = [];
+  $scope.Auth = Auth;
 
   Posts.query(function success(data) {
     console.log(data);

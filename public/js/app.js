@@ -37,6 +37,11 @@ app.config(['$stateProvider',
     url: '/allposts',
     templateUrl: 'views/allposts.html',
     controller: 'AllCtrl'
+  })
+  .state('showpost', {
+    url: '/posts/:id',
+    templateUrl: 'views/showpost.html',
+    controller: 'ShowCtrl'
   });
 
   $httpProvider.interceptors.push('AuthInterceptor')
