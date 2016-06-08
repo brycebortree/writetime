@@ -56,13 +56,26 @@ angular.module('WriteCtrls', ['WriteServices'])
     console.log(data);
   });
 }])
+.controller('MyCtrl', ['$scope', '$location', 'Posts', 'Auth', 
+  function($scope, $location, Posts, Auth) {
+  $scope.posts = [];
+  $scope.Auth = Auth;
+
+  Posts.query(function success(data) {
+    console.log(data);
+    $scope.posts = data;
+  }, function error(data) {
+    console.log(data);
+  });
+}])
 .controller('EditCtrl', ['$scope', '$stateParams', '$location', 'Post', 'Auth', '$http',
   function($scope, $stateParams, $location, Post, Auth, $http) {
   $scope.posts = [];
   $scope.Auth = Auth;
 
   Post.get({id: $stateParams.id}, function success(data) {
-    $scope.post = data;
+    $scope.post = data.post;
+
   }, function error(data) {
     console.log(data);
   })
