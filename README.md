@@ -17,15 +17,15 @@ ui.router
 express-jwt
 bootstrap
 
+
 //working on: 
 creating a myposts page
-creating comments
-publicise certain pages
+publicise certain posts
 save intermitently 
 styling
 
 //feature creep
-comments
+delete comments
 daily emails
 information about users input
 follow/dashboard features
