@@ -35,6 +35,7 @@ angular.module('WriteServices', ['ngResource'])
         var token = this.getToken();
         try {
           var payload = JSON.parse($window.atob(token.split('.')[1]));
+          console.log("user:", payload);
           return payload;
         } catch(err) {
           return false;

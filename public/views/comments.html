@@ -1,19 +1,21 @@
 <h1>Comments for {{post.title}}</h1>
 
-<h3>New Comment</h3>
-
 <form ng-submit="createComment()">
 
   <div class="form-group">
-    <label for="content">content</label>
+    <label for="content">New Comment</label>
     <textarea class="form-control" id="content" ng-model="comment.content"></textarea>
   </div>
 
-  <button type="submit" class="btn btn-success">Submit</button>
+  <button type="submit" class="btn btn-success pull-right">Submit</button>
 </form>
 
-<div class="well" ng-click="reloadRoute()" ng-show="Auth.isLoggedIn()" ng-repeat="comment in comments">
-{{comment.content}}
+<br>
+<br>
+
+<div class="well" ng-show="Auth.isLoggedIn()" ng-repeat="comment in comments">
+  {{comment.content}}
+  <a href="/allposts" ng-click="deleteComment(comment._id, $index)" class="btn btn-danger glyphicon glyphicon-trash pull-right"> Delete</a>
 </div>
 
   

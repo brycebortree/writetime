@@ -38,7 +38,8 @@ app.post('/api/auth', function(req, res) {
       user = {
         id: user.id,
         email: user.email,
-        password: user.password
+        password: user.password,
+        name: user.name
       }
       var token = jwt.sign(user, secret);
       res.send({user: user, token: token});

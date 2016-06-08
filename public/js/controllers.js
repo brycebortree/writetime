@@ -28,6 +28,14 @@ angular.module('WriteCtrls', ['WriteServices'])
       console.log(data);
     });
   }
+
+    $scope.deleteComment = function(id, commentsIdx) {
+    Comment.delete({id: $stateParams.id}, function success(data) {
+      $scope.comments.splice(commentsIdx, 1);
+    }, function error(data) {
+      console.log(data);
+    });
+  }
 }])
 
 // P O S T S  C O N T R O L L E R S
