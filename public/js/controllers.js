@@ -10,16 +10,13 @@ angular.module('WriteCtrls', ['WriteServices'])
     $scope.Auth = Auth;
 
     Post.get({id: $stateParams.id}, function success(data){
+      console.log(data);
       $scope.post = data.post;
-      $scope.comment = data.comment;
+      $scope.comments = data.comments;
     }, function error(data){
       console.log(data)
-    })
-
-    Comment.query(function success(data){
-      console.log(data);
-    })
-  }])
+    });
+}])
 
 // POSTS CONTROLLERS
 .controller('ShowCtrl', ['$scope', '$location', '$stateParams', 'Post', 'Auth',
