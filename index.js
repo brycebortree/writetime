@@ -25,6 +25,7 @@ app.use(function (err, req, res, next) {
 
 app.use('/api/posts', require('./controllers/posts'));
 app.use('/api/users', require('./controllers/users'));
+app.use('/api/comments', require('./controllers/comments'));
 
 app.post('/api/auth', function(req, res) {
   // example query: models.post.find({where: {id: req.params.id}}).then(function(err, post) {

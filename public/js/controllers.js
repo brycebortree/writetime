@@ -3,8 +3,25 @@ angular.module('WriteCtrls', ['WriteServices'])
   function($scope, Post, Auth) {
 }])
 
-// POSTS CONTROLLERS
+// COMMENTS CONTROLLERS
+.controller('CommentCtrl', ['$scope', '$location', '$stateParams', 'Comment', 'Post', 'Auth', 
+  function($scope, $location, $stateParams, Comment, Post, Auth){
+    $scope.comments = [];
+    $scope.Auth = Auth;
 
+    Post.get({id: $stateParams.id}, function success(data){
+      $scope.post = data.post;
+      $scope.comment = data.comment;
+    }, function error(data){
+      console.log(data)
+    })
+
+    Comment.query(function success(data){
+      console.log(data);
+    })
+  }])
+
+// POSTS CONTROLLERS
 .controller('ShowCtrl', ['$scope', '$location', '$stateParams', 'Post', 'Auth',
   function($scope, $location, $stateParams, Post, Auth) {
   $scope.post = {};
@@ -51,9 +68,9 @@ angular.module('WriteCtrls', ['WriteServices'])
 
   Posts.query(function success(data) {
     console.log("data:", data);
-    console.log("user?", data[0].user.name);
+    // console.log("user?", data[0].user.name);
     $scope.posts = data;
-    $scope.user = data[0].user.name;
+    // $scope.user = data[0].user.name;
   }, function error(data) {
     console.log(data);
   });

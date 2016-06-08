@@ -6,8 +6,15 @@ angular.module('WriteServices', ['ngResource'])
        update: {method: 'PUT'}
     });
 }])
-.factory('Posts', ['$resource',function($resource) {
+.factory('Posts', ['$resource', function($resource) {
   return $resource('/api/posts/all');
+}])
+.factory('Comment', ['$resource', function($resource){
+  return $resource('/api/comments/', {id: '@id'}, 
+    {
+      'query': {isArray:false}, 
+       update: {method: 'PUT'}
+    });
 }])
 .factory('Auth', ['$window', function($window) {
   return {

@@ -52,6 +52,11 @@ app.config(['$stateProvider',
     url: '/myposts',
     templateUrl: 'views/myposts.html',
     controller: 'MyCtrl'
+  })
+  .state('comments', {
+    url: '/posts/:id/comments',
+    templateUrl: 'views/comments.html',
+    controller: 'CommentCtrl'
   });
 
   $httpProvider.interceptors.push('AuthInterceptor')
