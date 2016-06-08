@@ -3,7 +3,7 @@ angular.module('WriteServices', ['ngResource'])
   return $resource('/api/posts/:id', {id: '@id'}, 
     {
       'query': {isArray:false}, 
-      update: {method: 'PUT'}
+       update: {method: 'PUT'}
     });
 }])
 .factory('Posts', ['$resource',function($resource) {

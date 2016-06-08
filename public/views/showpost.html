@@ -1,10 +1,10 @@
 <h1>{{post.title}}</h1>
+<h2>by: {{user.name}} </h2>
 
 <div class="well">
   <p>
     {{post.content}}
   </p>
-  <img class="img-responsive" ng-src="{{recipe.image}}">
 </div>
 
 <a href="/#/allposts" ng-click="deletePost(post._id, $index)" class="btn btn-danger glyphicon glyphicon-trash pull-right"></a>

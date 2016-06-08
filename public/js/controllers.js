@@ -2,6 +2,9 @@ angular.module('WriteCtrls', ['WriteServices'])
 .controller('HomeCtrl', ['$scope', 'Post', 'Auth', 
   function($scope, Post, Auth) {
 }])
+
+// POSTS CONTROLLERS
+
 .controller('ShowCtrl', ['$scope', '$location', '$stateParams', 'Post', 'Auth',
   function($scope, $location, $stateParams, Post, Auth) {
   $scope.post = {};
@@ -9,8 +12,9 @@ angular.module('WriteCtrls', ['WriteServices'])
 
 
   Post.get({id: $stateParams.id}, function success(data) {
-    $scope.post = data;
-    console.log(data);
+    $scope.post = data.post;
+    $scope.user = data.user;
+    console.log(data.user);
   }, function error(data) {
     console.log(data);
   })
@@ -18,17 +22,6 @@ angular.module('WriteCtrls', ['WriteServices'])
   $scope.deletePost = function(id, postsIdx) {
     Post.delete({id: $stateParams.id}, function success(data) {
       $scope.posts.splice(postsIdx, 1);
-    }, function error(data) {
-      console.log(data);
-    });
-  }
-
-  $scope.editPost = function(id, postsIdx) {
-    // C H A N G E OR D E L E T E 
-    Post.delete({id: $stateParams.id}, function success(data) {
-      $location.path('/allposts');
-      $scope.posts.splice(postsIdx, 1);
-      $location.path('/allposts');
     }, function error(data) {
       console.log(data);
     });
@@ -49,6 +42,7 @@ angular.module('WriteCtrls', ['WriteServices'])
     });
   }
 }])
+
 // Note that all is POSTS PLURAL
 .controller('AllCtrl', ['$scope', '$location', 'Posts', 'Auth', 
   function($scope, $location, Posts, Auth) {
@@ -72,7 +66,6 @@ angular.module('WriteCtrls', ['WriteServices'])
   }, function error(data) {
     console.log(data);
   })
-
   $scope.updatePost = function(id) {
     $scope.post = {
       title: $scope.post.title,
@@ -85,19 +78,6 @@ angular.module('WriteCtrls', ['WriteServices'])
       console.log(res.data);
     })
   }
- // $scope.userSignup = function() {
- //      $scope.user = {
- //        name: $scope.user.name,
- //        email: $scope.user.email,
- //        password: $scope.user.password
- //      };
- //    $http.post('/api/users', $scope.user).then(function success(res) {
- //      $location.path('/login');
- //    }, function error(res) {
- //      console.log(res.data);
- //    });
- //  }
-
   $scope.deletePost = function(id, postsIdx) {
     Post.delete({id: $stateParams.id}, function success(data) {
       $scope.posts.splice(postsIdx, 1);
@@ -105,9 +85,9 @@ angular.module('WriteCtrls', ['WriteServices'])
       console.log(data);
     });
   }
-
-
 }])
+
+// USERS CONTROLLERS
 
 .controller('NavCtrl', ['$scope', '$location', 'Auth', 
   function($scope, $location, Auth) {
