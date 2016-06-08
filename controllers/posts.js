@@ -21,7 +21,9 @@ router.route('/')
 
 router.route('/all')
   .get(function(req, res){
-    models.post.findAll().then(function(posts, err){
+    models.post.findAll({
+      include: [models.user]
+    }).then(function(posts, err){
       if (err) return res.status(500).send(err);
       res.send(posts);
     });

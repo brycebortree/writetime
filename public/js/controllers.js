@@ -50,8 +50,10 @@ angular.module('WriteCtrls', ['WriteServices'])
   $scope.Auth = Auth;
 
   Posts.query(function success(data) {
-    console.log(data);
+    console.log("data:", data);
+    console.log("user?", data[0].user.name);
     $scope.posts = data;
+    $scope.user = data[0].user.name;
   }, function error(data) {
     console.log(data);
   });
