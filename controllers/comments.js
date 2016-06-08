@@ -5,24 +5,24 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    console.log("post id:", req.params.id);
-      models.post.find({where: {id: req.params.id}}).then(function(post, err) {
-        post.getComments().then(function(comments, err) {
-        if (err) return res.status(500).send(err);
-        res.send({user: user, comments: comments});
-      });
+    models.post.find({where: {id: req.params.id}}).then(function(post, err) {
+      post.getComments().then(function(comments, err) {
+      if (err) return res.status(500).send(err);
+      res.send({user: user, comments: comments});
     });
+  });
+})
+  .post(jwt({secret: "behindtheuniverse"}), function(req, res) {
+    console.log(req)
+    models.post.findById(req.body.postId).then(function(post, err) {
+      console.log("req.post.id:", req.body.postId);
+      console.log("post:", post);
+      post.createComment(req.body).then(function(comment, err) {
+        if (err) return res.status(500).send(err);
+        res.send(comment);
+        });
+      });
   })
-  // .post(function(req, res) {
-  //   models.post.find({where: {id: req.params.id}}).then(function(post, err) {
-  //     post.update({
-  //       title: req.body.title,
-  //       content: req.body.content
-  //     })
-  //     if (err) return res.status(500).send(err);
-  //     res.send(post);
-  //   });
-  // })
   .delete(function(req, res) {
     models.post.find({where: {id: req.params.id}}).then(function(post, err) {
       if (err) {

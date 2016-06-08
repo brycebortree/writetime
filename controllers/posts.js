@@ -3,6 +3,8 @@ var models = require('../models');
 var jwt = require('express-jwt');
 var router = express.Router();
 
+// get mainpage of posts and post new ones
+
 router.route('/')
   .get(function(req, res) {
     models.post.findOne().then(function(posts, err) {
@@ -12,6 +14,7 @@ router.route('/')
   })
   .post(jwt({secret: "behindtheuniverse"}), function(req, res) {
     models.user.findById(req.user.id).then(function(user, err) {
+      console.log(req);
       user.createPost(req.body).then(function(post, err) {
       if (err) return res.status(500).send(err);
       res.send(post);
@@ -19,6 +22,7 @@ router.route('/')
     })
   });
 
+// findAll is easier
 router.route('/all')
   .get(function(req, res){
     models.post.findAll({
@@ -29,7 +33,7 @@ router.route('/all')
     });
   })
 
-
+// individual show page
 router.route('/:id')
   .get(function(req, res) {
     console.log("post id", req.params.id);

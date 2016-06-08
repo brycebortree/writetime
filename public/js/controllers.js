@@ -3,9 +3,13 @@ angular.module('WriteCtrls', ['WriteServices'])
   function($scope, Post, Auth) {
 }])
 
-// COMMENTS CONTROLLERS
+// C O M M E N T S   C O N T R O L L E R S
 .controller('CommentCtrl', ['$scope', '$location', '$stateParams', 'Comment', 'Post', 'Auth', 
   function($scope, $location, $stateParams, Comment, Post, Auth){
+    $scope.comment = {
+      content: '',
+      postId: $stateParams.id
+    };
     $scope.comments = [];
     $scope.Auth = Auth;
 
@@ -16,9 +20,33 @@ angular.module('WriteCtrls', ['WriteServices'])
     }, function error(data){
       console.log(data)
     });
+
+    $scope.createComment = function() {
+    Comment.save($scope.comment, function success(data) {
+      $location
+    }, function error(data) {
+      console.log(data);
+    });
+  }
 }])
 
-// POSTS CONTROLLERS
+// P O S T S  C O N T R O L L E R S
+.controller('NewCtrl', ['$scope', '$location', 'Post', 'Auth', 
+  function($scope, $location, Post, Auth) {
+  $scope.post = {
+    title: '',
+    description: ''
+  };
+
+  $scope.createPost = function() {
+    Post.save($scope.post, function success(data) {
+      $location.path('/allposts');
+    }, function error(data) {
+      console.log(data);
+    });
+  }
+}])
+
 .controller('ShowCtrl', ['$scope', '$location', '$stateParams', 'Post', 'Auth',
   function($scope, $location, $stateParams, Post, Auth) {
   $scope.post = {};
@@ -36,21 +64,6 @@ angular.module('WriteCtrls', ['WriteServices'])
   $scope.deletePost = function(id, postsIdx) {
     Post.delete({id: $stateParams.id}, function success(data) {
       $scope.posts.splice(postsIdx, 1);
-    }, function error(data) {
-      console.log(data);
-    });
-  }
-}])
-.controller('NewCtrl', ['$scope', '$location', 'Post', 'Auth', 
-  function($scope, $location, Post, Auth) {
-  $scope.post = {
-    title: '',
-    description: ''
-  };
-
-  $scope.createPost = function() {
-    Post.save($scope.post, function success(data) {
-      $location.path('/allposts');
     }, function error(data) {
       console.log(data);
     });
@@ -116,8 +129,7 @@ angular.module('WriteCtrls', ['WriteServices'])
   }
 }])
 
-// USERS CONTROLLERS
-
+// U S E R S   C O N T R O L L E R S
 .controller('NavCtrl', ['$scope', '$location', 'Auth', 
   function($scope, $location, Auth) {
   $scope.Auth = Auth;
