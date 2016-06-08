@@ -4,8 +4,8 @@ angular.module('WriteCtrls', ['WriteServices'])
 }])
 
 // C O M M E N T S   C O N T R O L L E R S
-.controller('CommentCtrl', ['$scope', '$location', '$stateParams', 'Comment', 'Post', 'Auth', 
-  function($scope, $location, $stateParams, Comment, Post, Auth){
+.controller('CommentCtrl', ['$scope', '$location', '$stateParams', '$state', 'Comment', 'Post', 'Auth', 
+  function($scope, $location, $stateParams, $state, Comment, Post, Auth){
     $scope.comment = {
       content: '',
       postId: $stateParams.id
@@ -23,7 +23,7 @@ angular.module('WriteCtrls', ['WriteServices'])
 
     $scope.createComment = function() {
     Comment.save($scope.comment, function success(data) {
-      $location
+      $state.go($state.current, {}, {reload: true});    
     }, function error(data) {
       console.log(data);
     });
