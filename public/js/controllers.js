@@ -48,7 +48,7 @@ angular.module('WriteCtrls', ['WriteServices'])
 
   $scope.createPost = function() {
     Post.save($scope.post, function success(data) {
-      $location.path('/allposts');
+      $location.path('/myposts');
     }, function error(data) {
       console.log(data);
     });
@@ -87,20 +87,21 @@ angular.module('WriteCtrls', ['WriteServices'])
   Posts.query(function success(data) {
     console.log("data:", data);
     // console.log("user?", data[0].user.name);
-    $scope.posts = data;
+    $scope.posts = data.posts;
     // $scope.user = data[0].user.name;
   }, function error(data) {
     console.log(data);
   });
 }])
-.controller('MyCtrl', ['$scope', '$location', 'Posts', 'Auth', 
-  function($scope, $location, Posts, Auth) {
+.controller('MyCtrl', ['$scope', '$location', 'MyPosts', 'Auth', 
+  function($scope, $location, MyPosts, Auth) {
   $scope.posts = [];
   $scope.Auth = Auth;
 
-  Posts.query(function success(data) {
+  MyPosts.query(function success(data) {
     console.log(data);
-    $scope.posts = data;
+    $scope.posts = data.posts;
+    $scope.user = data.user;
   }, function error(data) {
     console.log(data);
   });

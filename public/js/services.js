@@ -7,7 +7,16 @@ angular.module('WriteServices', ['ngResource'])
     });
 }])
 .factory('Posts', ['$resource', function($resource) {
-  return $resource('/api/posts/all');
+  return $resource('/api/posts/all', {}, 
+    {
+      'query': {method:'GET', isArray:false}, 
+    });
+}])
+.factory('MyPosts', ['$resource', function($resource) {
+  return $resource('/api/posts/my', {}, 
+    {
+      'query': {isArray:false}, 
+    });
 }])
 .factory('Comment', ['$resource', function($resource){
   return $resource('/api/comments/', {}, 

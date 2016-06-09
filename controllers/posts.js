@@ -14,13 +14,22 @@ router.route('/')
   })
   .post(jwt({secret: "behindtheuniverse"}), function(req, res) {
     models.user.findById(req.user.id).then(function(user, err) {
-      console.log(req);
       user.createPost(req.body).then(function(post, err) {
       if (err) return res.status(500).send(err);
       res.send(post);
       });
     })
   });
+
+// pulled from the parens of FIND 
+router.route('/my')
+  .get(function(req, res){
+    models.user.find({where: {id: req.user.id}}).then(function(user, err){
+      user.getPosts().then(function(posts, err){
+        res.send({user: user, posts: posts});
+      });
+    });
+  })
 
 // findAll is easier
 router.route('/all')
