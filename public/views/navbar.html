@@ -17,14 +17,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="/#/">Home</a></li>
-        <li><a href="/#/signup" ng-hide="Auth.isLoggedIn()">Sign Up</a></li>
-        <li><a href="/#/login" ng-hide="Auth.isLoggedIn()">Log In</a></li>
-        <li><a href="/#/about">About</a></li>
-        <li><a href="/#/newpost" ng-show="Auth.isLoggedIn()">New Post</a></li>
+        <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+        <li ui-sref-active="active"><a ui-sref="signup" ng-hide="Auth.isLoggedIn()">Sign Up</a></li>
+        <li ui-sref-active="active"><a ui-sref="login" ng-hide="Auth.isLoggedIn()">Log In</a></li>
+        <li ui-sref-active="active"><a ui-sref="about">About</a></li>
+        <li ui-sref-active="active"><a ui-sref="newpost" ng-show="Auth.isLoggedIn()">New Post</a></li>
 <!--         <li><a href="/#/allposts" ng-show="Auth.isLoggedIn()">All Posts</a></li>--> 
-        <li><a href="/#/myposts" ng-show="Auth.isLoggedIn()">My Posts</a></li>
-        <li><a href="#" ng-click="logout()" ng-show="Auth.isLoggedIn()">Logout</a></li>
+        <li ui-sref-active="active"><a ui-sref="myposts" ng-show="Auth.isLoggedIn()">My Posts</a></li>
+        <li ui-sref-active="active"><a href="#" ng-click="logout()" ng-show="Auth.isLoggedIn()">Logout</a></li>
+<!--         <li ui-sref-active="active"><a ui-sref="takeoff">TakeOff</a></li>
+        <li ui-sref-active="active"><a ui-sref="inventory">Inventory</a></li> -->
       </ul>
     </div><!-- /.navbar-collapse -->
   </div>
