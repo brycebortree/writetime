@@ -174,6 +174,7 @@ angular.module('WriteCtrls', ['WriteServices'])
 }])
 .controller('LoginCtrl', ['$scope', '$http', '$location', 'Auth', 'Alerts', 
   function($scope, $http, $location, Auth, Alerts) {
+  $scope.loginBody = true;
   $scope.user = {
     email: '',
     password: ''
