@@ -182,7 +182,7 @@ angular.module('WriteCtrls', ['WriteServices'])
     $http.post('/api/auth', $scope.user).then(function success(res) {
       Auth.saveToken(res.data.token);
       console.log('Token:', res.data.token);
-      $location.path('/newPost');
+      $location.path('/newpost');
     }, function error(res) {
       console.log(res);
       Alerts.add('warning', 'Login failure: ' + res.statusText);
