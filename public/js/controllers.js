@@ -154,8 +154,8 @@ angular.module('WriteCtrls', ['WriteServices'])
   function($scope, Alerts) {
   $scope.Alerts = Alerts;
 }])
-.controller('SignupCtrl', ['$scope', '$http', '$location', 
-  function($scope, $http, $location) {
+.controller('SignupCtrl', ['$scope', '$http', '$location', 'Auth',
+  function($scope, $http, $location, Auth) {
   $scope.user = {
     name: '',
     email: '',
@@ -168,7 +168,8 @@ angular.module('WriteCtrls', ['WriteServices'])
         password: $scope.user.password
       };
     $http.post('/api/users', $scope.user).then(function success(res) {
-      $location.path('/login');
+      Auth.saveToken(res.data.token);
+      $location.path('/newpost');
     }, function error(res) {
       console.log(res.data);
     });

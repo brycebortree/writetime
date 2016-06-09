@@ -1,7 +1,7 @@
 <div ng-show="Auth.isLoggedIn()"> 
   <h1>{{post.title}}</h1>
-  <!-- <h2>by: {{user.name}} </h2> -->
-  <div class="well">
+<!--   <h2>by: {{user.name}} </h2>-->  
+<div class="well">
     <p>
       {{post.content}}
     </p>
@@ -10,10 +10,10 @@
 
 
 
-
+  
 <a href="/myposts" ng-click="deletePost(post._id, $index)" class="btn btn-danger glyphicon glyphicon-trash pull-right"> Delete</a>
 <a ng-href="/posts/edit/{{post.id}}" class="btn btn-warning glyphicon glyphicon-pencil pull-right"> Edit</a>
-<a href="/myposts" class="btn btn-primary">&larr; Back</a>
+<a href="/myposts" class="btn btn-primary">&larr; Back to My Post </a>
 
 <h2>Comments</h2>
 

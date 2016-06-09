@@ -66,7 +66,7 @@ nav.navbar.shrink.navbar-toggle {
   }
 
 /*main page jumbotron*/
-.image {
+.jumbotron {
   background-image: url('../assets/desk1.jpeg') bottom center no-repeat;
   background-size: cover;
   color: white;
@@ -79,7 +79,7 @@ nav.navbar.shrink.navbar-toggle {
   z-index: 9999;
 }
   
-.image:before {
+.jumbotron:before {
   content: '';
   position: absolute;
   top: 0;

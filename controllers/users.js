@@ -1,6 +1,10 @@
 var express = require('express');
 var models = require('../models');
+var jwt = require('jsonwebtoken');
 var router = express.Router();
+
+var secret = "behindtheuniverse";
+
 
 router.route('/')
   .get(function(req, res) {
@@ -14,7 +18,14 @@ router.route('/')
     .then(function(user, err) {
       console.log(err);
       if (err) return res.status(500).send(err);
-      res.send(user);
+        user = {
+        id: user.id,
+        email: user.email,
+        password: user.password,
+        name: user.name
+      }
+      var token = jwt.sign(user, secret);
+      res.send({user: user, token: token});
     });
   });
 

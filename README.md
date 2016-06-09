@@ -35,10 +35,7 @@ A SEAN stack app built in a week for General Assembly's WDI course. Inspired in 
   <li>information about users input</li>
   <li>follow/dashboard features</li>
   <li>publicise certain posts</li>
-  <li>keep users logged in</li>
   <li>autosave</li>
-  <li>comments on post page</li>
-  <li>add a comment on post page</li>
 
 
 </ul>
