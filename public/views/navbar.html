@@ -1,22 +1,32 @@
 <!-- Thanks bootstrap!  -->
 
-<nav class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
+<!-- <nav class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
+   <!--  <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/#/"> <img src="./assets/writetime.svg" height="60px"> Write Time </a>
+      
       <p ng-show="Auth.isLoggedIn()">You're logged in as: {{Auth.currentUser().name}}</p></li>
 
+
+<!-- USING BOOTSTRAP 3.0.3 -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/#/"> <span><img src="./assets/writetime.svg" height="30px"></span> Write Time </a>    
     </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav navbar-right">
+    <div class="collapse navbar-collapse" id="navigationbar">
+      <ul class="nav navbar-nav pull-right">
         <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
         <li ui-sref-active="active"><a ui-sref="signup" ng-hide="Auth.isLoggedIn()">Sign Up</a></li>
         <li ui-sref-active="active"><a ui-sref="login" ng-hide="Auth.isLoggedIn()">Log In</a></li>
@@ -25,9 +35,7 @@
 <!--         <li><a href="/#/allposts" ng-show="Auth.isLoggedIn()">All Posts</a></li>--> 
         <li ui-sref-active="active"><a ui-sref="myposts" ng-show="Auth.isLoggedIn()">My Posts</a></li>
         <li ui-sref-active="active"><a href="#" ng-click="logout()" ng-show="Auth.isLoggedIn()">Logout</a></li>
-<!--         <li ui-sref-active="active"><a ui-sref="takeoff">TakeOff</a></li>
-        <li ui-sref-active="active"><a ui-sref="inventory">Inventory</a></li> -->
       </ul>
-    </div><!-- /.navbar-collapse -->
+    </div><!--/.nav-collapse -->
   </div>
 </nav>
