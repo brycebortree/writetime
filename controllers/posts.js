@@ -45,12 +45,12 @@ router.route('/all')
 // individual show page
 router.route('/:id')
   .get(function(req, res) {
-    console.log("post id", req.params.id);
-      models.post.find({where: {id: req.params.id}}).then(function(post, err) {
-        post.getComments().then(function(comments, err) {
-          post.getUser({where: {id: post.userId}}).then(function(user, err) {
-            if (err) return res.status(500).send(err);
-            res.send({user: user, post: post, comments: comments});
+    models.post.find({where: {id: req.params.id}}).then(function(post, err) {
+      post.getComments().then(function(comments, err) {
+        post.getUser({where: {id: post.userId}}).then(function(user, err) {
+          if (err) return res.status(500).send(err);
+          console.log("comments:", comments);
+          res.send({user: user, post: post, comments: comments});
         });
       });
     });

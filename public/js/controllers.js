@@ -4,39 +4,9 @@ angular.module('WriteCtrls', ['WriteServices'])
 }])
 
 // C O M M E N T S   C O N T R O L L E R S
-.controller('CommentCtrl', ['$scope', '$location', '$stateParams', '$state', 'Comment', 'Post', 'Auth', 
-  function($scope, $location, $stateParams, $state, Comment, Post, Auth){
-    $scope.comment = {
-      content: '',
-      postId: $stateParams.id
-    };
-    $scope.comments = [];
-    $scope.Auth = Auth;
+// .controller('CommentCtrl', ['$scope', '$location', '$stateParams', '$state', 'Comment', 'Post', 'Auth', 
+//   function($scope, $location, $stateParams, $state, Comment, Post, Auth){ 
 
-    Post.get({id: $stateParams.id}, function success(data){
-      console.log(data);
-      $scope.post = data.post;
-      $scope.comments = data.comments;
-    }, function error(data){
-      console.log(data)
-    });
-
-    $scope.createComment = function() {
-    Comment.save($scope.comment, function success(data) {
-      $state.go($state.current, {}, {reload: true});    
-    }, function error(data) {
-      console.log(data);
-    });
-  }
-
-    $scope.deleteComment = function(id, commentsIdx) {
-    Comment.delete({id: $stateParams.id}, function success(data) {
-      $scope.comments.splice(commentsIdx, 1);
-    }, function error(data) {
-      console.log(data);
-    });
-  }
-}])
 
 // P O S T S  C O N T R O L L E R S
 .controller('NewCtrl', ['$scope', '$location', 'Post', 'Auth', 
@@ -55,8 +25,8 @@ angular.module('WriteCtrls', ['WriteServices'])
   }
 }])
 
-.controller('ShowCtrl', ['$scope', '$location', '$stateParams', 'Post', 'Auth',
-  function($scope, $location, $stateParams, Post, Auth) {
+.controller('ShowCtrl', ['$scope', '$location', '$stateParams', '$state', 'Comment', 'Post', 'Auth', 
+  function($scope, $location, $stateParams, $state, Comment, Post, Auth){
   $scope.post = {};
   $scope.Auth = Auth;
 
@@ -64,7 +34,8 @@ angular.module('WriteCtrls', ['WriteServices'])
   Post.get({id: $stateParams.id}, function success(data) {
     $scope.post = data.post;
     $scope.user = data.user;
-    console.log(data.user);
+    $scope.comments = data.comments;
+    console.log(data);
   }, function error(data) {
     console.log(data);
   })
@@ -75,6 +46,37 @@ angular.module('WriteCtrls', ['WriteServices'])
     }, function error(data) {
       console.log(data);
     });
+  }
+
+  $scope.comment = {
+    content: '',
+    postId: $stateParams.id
+  };
+  $scope.comments = [];
+  $scope.Auth = Auth;
+
+  Post.get({id: $stateParams.id}, function success(data){
+    console.log(data);
+    $scope.post = data.post;
+    $scope.comments = data.comments;
+  }, function error(data){
+    console.log(data)
+  });
+
+  $scope.createComment = function() {
+  Comment.save($scope.comment, function success(data) {
+    $state.go($state.current, {}, {reload: true});    
+  }, function error(data) {
+    console.log(data);
+  });
+}
+
+  $scope.deleteComment = function(id, commentsIdx) {
+  Comment.delete({id: $stateParams.id}, function success(data) {
+    $scope.comments.splice(commentsIdx, 1);
+  }, function error(data) {
+    console.log(data);
+  });
   }
 }])
 

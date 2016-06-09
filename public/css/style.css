@@ -4,8 +4,19 @@ body {
 }
 
 /*navbar from codepen*/
-nav.navbar-header {
+nav {
   min-height: 60px;
+  background-image: url("../assets/planks.jpeg");
+  background-attachment: static;
+  background-size: cover;
+}
+
+.navbar li{
+  background: rgba(255, 255, 255, 0.5);
+}
+
+span.frosted {
+  background: rgba(255, 255, 255, 0.5);
 }
 
 nav a {
@@ -56,9 +67,9 @@ nav.navbar.shrink.navbar-toggle {
 
 /*main page jumbotron*/
 .image {
-  background-image: url('/assets/desk3.jpeg') bottom center no-repeat;
+  background-image: url('../assets/desk1.jpeg') bottom center no-repeat;
   background-size: cover;
-  color: $white;
+  color: white;
   margin-bottom: 0 !important;
   overflow: hidden;
   padding-top: 10em !important;
@@ -103,10 +114,6 @@ button.gray {
   background-color: gainsboro;
 }
 
-.well{
-    background: rgba(255, 255, 255, 0.9);
-}
-
 .books {
   height: 100%;
   width: 100%;
@@ -115,4 +122,8 @@ button.gray {
 
 .formsy {
   margin-top: 75px;
+}
+
+.well {
+  background: rgba(255, 255, 255, 0.5);
 }
