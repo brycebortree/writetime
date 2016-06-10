@@ -1,9 +1,10 @@
 body {
   padding-top: 80px;
   width: 100%;
+  background-color: #E6EAE9;
 }
 
-/*navbar from codepen*/
+/*navbar adapted from codepen*/
 nav {
   min-height: 60px;
   background-image: url("../assets/planks.jpeg");
@@ -15,8 +16,15 @@ nav {
   background: rgba(255, 255, 255, 0.5);
 }
 
-span.frosted {
+span.nabar-brand.frosted {
   background: rgba(255, 255, 255, 0.5);
+  height: 60px;
+}
+
+span.navbar-brand.frosted:hover {
+  background: rgba(255, 255, 255, 0.5);
+  height: 60px;
+  transition: all 0.3s ease;
 }
 
 nav a {
@@ -44,6 +52,12 @@ nav.navbar-toggle {
 
 nav.navbar-header.shrink {
   min-height: 35px;
+}
+
+span.navbar-brand.frosted:hover.shrink {
+  background: rgba(255, 255, 255, 0.5);
+  height: 35px;
+  transition: all 0.3s ease;
 }
 
 nav.navbar.shrink #logo{
@@ -111,24 +125,24 @@ button.gray {
   border-radius: 0px;
 }
 
-/*button colors*/
-
-.blue {
-  background-color: lightskyblue;
-  color: dimgrey;
+h1 {
+  font-family: "Alegreya", serif;
 }
 
-.gold {
-  background-color: ;
-  color: dimgrey;
+h2, h3, h4, h5, h6, li, a, p {
+  font-family: "Futura", "Open Sans", sans-serif;
+  font-weight: 100;
 }
 
-.signup {
-  background-image: url('../assets/desk2.jpeg');
-  background-size: cover;
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
 }
 
-.login {
-  background-image: url('../assets/desk3.jpeg');
-  background-size: cover;
+a {
+  color: #49ba91;
+  font-weight: 300;
+}
+
+a:hover {
+  color: #00868B;
 }
