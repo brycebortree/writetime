@@ -67,8 +67,7 @@ nav.navbar.shrink.navbar-toggle {
 
 /*main page jumbotron*/
 .jumbotron {
-  margin-bottom:0px;
-  background-image: url('./assets/desk1.jpeg');
+  background-image: url('../assets/desk1.jpeg');
   background-size: cover;
   color: white;
   margin-bottom: 0 !important;
