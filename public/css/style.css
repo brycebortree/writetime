@@ -121,5 +121,14 @@ button.gray {
 .gold {
   background-color: ;
   color: dimgrey;
+}
 
+.signup {
+  background-image: url('../assets/desk2.jpeg');
+  background-size: cover;
+}
+
+.login {
+  background-image: url('../assets/desk3.jpeg');
+  background-size: cover;
 }
