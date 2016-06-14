@@ -28,9 +28,7 @@ app.use('/api/users', require('./controllers/users'));
 app.use('/api/comments', require('./controllers/comments'));
 
 app.post('/api/auth', function(req, res) {
-  // example query: models.post.find({where: {id: req.params.id}}).then(function(err, post) {
-
-
+  
   db.user.find({where: {email: req.body.email}}).then(function(user, err) {
     if (err || !user) return res.status(401).send({message: 'User not found'});
     db.user.authenticate(req.body.email, req.body.password, function(err, result) {

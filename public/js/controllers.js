@@ -1,11 +1,8 @@
 angular.module('WriteCtrls', ['WriteServices'])
+
 .controller('HomeCtrl', ['$scope', 'Post', 'Auth', 
   function($scope, Post, Auth) {
 }])
-
-// C O M M E N T S   C O N T R O L L E R S
-// .controller('CommentCtrl', ['$scope', '$location', '$stateParams', '$state', 'Comment', 'Post', 'Auth', 
-//   function($scope, $location, $stateParams, $state, Comment, Post, Auth){ 
 
 
 // P O S T S  C O N T R O L L E R S
@@ -154,19 +151,20 @@ angular.module('WriteCtrls', ['WriteServices'])
   function($scope, Alerts) {
   $scope.Alerts = Alerts;
 }])
+
 .controller('SignupCtrl', ['$scope', '$http', '$location', 'Auth',
   function($scope, $http, $location, Auth) {
-  $scope.user = {
-    name: '',
-    email: '',
-    password: ''
-  };
+    $scope.user = {
+      name: '',
+      email: '',
+      password: ''
+    };
   $scope.userSignup = function() {
-      $scope.user = {
-        name: $scope.user.name,
-        email: $scope.user.email,
-        password: $scope.user.password
-      };
+    $scope.user = {
+      name: $scope.user.name,
+      email: $scope.user.email,
+      password: $scope.user.password
+    };
     $http.post('/api/users', $scope.user).then(function success(res) {
       Auth.saveToken(res.data.token);
       $location.path('/newpost');
@@ -175,6 +173,7 @@ angular.module('WriteCtrls', ['WriteServices'])
     });
   }
 }])
+
 .controller('LoginCtrl', ['$scope', '$http', '$location', 'Auth', 'Alerts', 
   function($scope, $http, $location, Auth, Alerts) {
   $scope.loginBody = true;
