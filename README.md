@@ -38,6 +38,10 @@ A SEAN stack app built in a week for General Assembly's WDI course. Inspired in 
   <li>better formatting saving</li>
   <li>search feature</li>
   <li>chat feature</li>
+  gamify
+  user information about user posts including word count
+  random text gen
+  set own word goals/automatically ramp up
 </ul>
 
 
