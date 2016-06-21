@@ -2,7 +2,7 @@
 
 <p>A SEAN stack app built in a week for General Assembly's WDI course. Inspired in part by 750words.</p>
 
-<img src="./public/assets/writeime.svg" / >
+<img src="/public/assets/writeime.svg" / >
 
 <h3> Philosophy</h3>
 <p>If you have a site that makes achieving a hobby easier, you're more likely to do that hobby. If you have mostly personal posts that you can occasionally publicise, you'll begin sharing your writing with others. Get in touch with yourself, establish good habits, and respect your own voice. Writeti.me offers you a space to come in daily and write whatever's on your mind. If you've been especially eloquent, feel free to publicise your post and share with your friends!</p>
@@ -44,7 +44,7 @@
   set own word goals/automatically ramp up
 </ul>
 
-<img src="./public/assets/writetime.png" />
+<img src="/public/assets/writetime.png" />
 
 
 
